@@ -12,8 +12,17 @@ const io = socketIO(server);
 
 app.use(express.static(publicPath));
 
-io.on('connection', () => {
+io.on('connection', socket => {
     console.log('io server connected');
+
+    socket.on('createMessage', data => {
+        console.log('Socket:createMessage', data);
+
+        socket.emit('newMessage', {
+            text: data.value,
+            date: new Date()
+        });
+    });
 });
 
 server.listen(port, () => {
