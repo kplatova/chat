@@ -1,0 +1,28 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "Chat on NodeJS (Express.js), SocketIO & VueJS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kplatova/chat.git"
+  },
+  "keywords": [
+    "chat",
+    "node",
+    "socketio",
+    "vuejs"
+  ],
+  "author": "Ksenia Platova <kplatova@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kplatova/chat/issues"
+  },
+  "homepage": "https://github.com/kplatova/chat#readme",
+  "dependencies": {
+    "express": "4.16.3"
+  }
+}
