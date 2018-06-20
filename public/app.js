@@ -45,7 +45,10 @@ new Vue({
             });
             socket.on('message:new', messages => {
                 this.messages.push(messages);
+                scrollToBottom(this.$refs.messages);
             });
+
+            scrollToBottom(this.$refs.messages);
         }
     },
     created() { // сразу при инициализации vue, до mounted()
@@ -66,3 +69,10 @@ new Vue({
         });
     }
 });
+
+function scrollToBottom(ref) {
+    setTimeout(() => {
+        ref.scrollTop = ref.scrollHeight;
+    });
+
+}
