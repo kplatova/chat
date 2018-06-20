@@ -1,9 +1,21 @@
 const socket = io();
 
+Vue.component('chat-message', {
+    props: ['message'],
+    template: `
+        <div class="message">
+            <div class="message-content z-depth-1">
+                {{message.text}}
+            </div>
+        </div>
+    `
+});
+
 new Vue({
     el: '#app',
     data: {
-        message: ''
+        message: '',
+        messages: []
     },
     methods: {
         sendMessage() {
@@ -11,13 +23,21 @@ new Vue({
                 text: this.message
             };
 
-            socket.emit('createMessage', message, error => {
+            socket.emit('message:create', message, error => {
                 if (error) {
                     console.error(error);
                 } else {
                     this.message = '';
                 }
             })
+        },
+        initConnection() {
+            socket.on('message:new', message => {
+                this.messages.push(messages);
+            });
         }
+    },
+    mounted() { // когда готов весь html
+        this.initConnection();
     }
 });

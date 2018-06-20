@@ -24,18 +24,12 @@
             </a>
         </div> <!-- .chat-users -->
         <div class="chat-messages">
-            <div
-                class="message"
-                v-for="m in 10"
-                :class="{'owner': m === 3}"
-            >
-                <div class="message-content z-depth-1">
-                    Сообщение {{m}}
-                </div>
-            </div>
+            <chat-message
+                v-for="m in messages"
+                :messages="m"
+            ></chat-message>
         </div> <!-- .chat-messages -->
     </div> <!-- .chat -->
-
     <div class="actions">
         <div class="input-field">
             <input
