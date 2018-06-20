@@ -32,7 +32,7 @@ new Vue({
             })
         },
         initConnection() {
-            socket.on('message:new', message => {
+            socket.on('message:new', messages => {
                 this.messages.push(messages);
             });
         }

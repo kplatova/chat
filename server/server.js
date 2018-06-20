@@ -19,6 +19,7 @@ io.on('connection', socket => {
         if (!data) {
             callback('Сообщение не может быть пустым');
         } else {
+            callback();
             io.emit('message:new', message('Admin', data.text));
         }
     });
