@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Chat on NodeJS (Express.js), SocketIO & VueJS",
   "main": "server.js",
+  "engines": {
+    "node": "9.8.0"
+  },
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon server/server.js"
