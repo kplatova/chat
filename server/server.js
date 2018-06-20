@@ -23,17 +23,40 @@ io.on('connection', socket => {
 
         callback({userId: socket.id});
 
+        socket.join(user.room);
+
+        users.remove(socket.id);
+        users.add(socket.id, user.name, user.room);
+
+        // отправление только мне
         socket.emit('message:new', message('Admin', `Привет, ${user.name}`));
+
+        // отправление всем пользователям, кроме меня
+        socket.broadcast.to(user.room).emit('message:new', message('Admin', `Новый пользователь ${user.name} подключился`));
+
     });
 
     socket.on('message:create', (data, callback) => {
         if (!data) {
             callback('Сообщение не может быть пустым');
         } else {
+            const user = users.get(data.id);
+
+            if(user) {
+                io.to(user.room).emit('message:new', message(data.name, data.text, data.id));
+            }
+
             callback();
-            io.emit('message:new', message(data.name, data.text, data.id));
         }
-    })
+    });
+
+    socket.on('disconnect', () => {
+        const user = users.remove(socket.id);
+        if(user) {
+            io.to(user.room).emit('message:new', message('Admin', `Пользователь ${user.name} ушел`))
+        }
+    });
+
 });
 
 server.listen(port, () => {
