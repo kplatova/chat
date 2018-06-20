@@ -1,3 +1,5 @@
-# Chat on NodeJS (Express.js), SocketIO и VueJS
+# Chat on ['Express.js', 'SocketIO', 'VueJS']
 
-Эксперимент по созданию чата на SocketIO
+Эксперимент по созданию чата на вебсокетах.
+
+Чатик выложен на Heroku: https://pure-beach-92916.herokuapp.com
