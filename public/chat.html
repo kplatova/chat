@@ -11,7 +11,39 @@
 </head>
 <body>
 
-<div id="app"></div>
+<div id="app">
+
+    <div class="chat">
+        <div class="chat-users collection">
+            <a
+                class="collection-item"
+                v-for="user in 3"
+                :class="{'active': user === 1}"
+            >
+                Пользователь {{user}}
+            </a>
+        </div> <!-- .chat-users -->
+        <div class="chat-messages">
+            <div
+                class="message"
+                v-for="m in 10"
+                :class="{'owner': m === 3}"
+            >
+                <div class="message-content z-depth-1">
+                    Сообщение {{m}}
+                </div>
+            </div>
+        </div> <!-- .chat-messages -->
+    </div> <!-- .chat -->
+
+    <div class="actions">
+        <div class="input-field">
+            <input type="text" placeholder="Написать сообщение">
+        </div>
+        <button class="btn">Отправить</button>
+    </div> <!-- .actions -->
+
+</div>  <!-- #app -->
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
