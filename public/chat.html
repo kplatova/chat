@@ -38,9 +38,20 @@
 
     <div class="actions">
         <div class="input-field">
-            <input type="text" placeholder="Написать сообщение">
+            <input
+                type="text"
+                placeholder="Написать сообщение"
+                v-model.trim="message"
+                autofocus
+                autocomplete="false"
+                @keydown.enter="sendMessage"
+            >
         </div>
-        <button class="btn">Отправить</button>
+        <button
+            class="btn"
+            @click="sendMessage"
+            :disabled="message.length === 0"
+        >Отправить</button>
     </div> <!-- .actions -->
 
 </div>  <!-- #app -->

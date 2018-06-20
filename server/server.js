@@ -13,15 +13,15 @@ const io = socketIO(server);
 app.use(express.static(publicPath));
 
 io.on('connection', socket => {
-    console.log('io server connected');
+    socket.on('createMessage', (message, callback) => {
+        if (!message) {
+            callback('Сообщение не может быть пустым');
+        }
 
-    socket.on('createMessage', data => {
-        console.log('Socket:createMessage', data);
-
-        socket.emit('newMessage', {
-            text: data.value,
-            date: new Date()
-        });
+        // socket.emit('newMessage', {
+        //     text: data.value,
+        //     date: new Date()
+        // });
     });
 });
 
