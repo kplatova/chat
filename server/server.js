@@ -28,6 +28,8 @@ io.on('connection', socket => {
         users.remove(socket.id);
         users.add(socket.id, user.name, user.room);
 
+        io.to(user.room).emit('users:update', users.getByRoom(user.room));
+
         // отправление только мне
         socket.emit('message:new', message('Admin', `Привет, ${user.name}`));
 
@@ -54,6 +56,7 @@ io.on('connection', socket => {
         const user = users.remove(socket.id);
         if(user) {
             io.to(user.room).emit('message:new', message('Admin', `Пользователь ${user.name} ушел`))
+            io.to(user.room).emit('users:update', users.getByRoom(user.room));
         }
     });
 

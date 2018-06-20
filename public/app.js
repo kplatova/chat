@@ -11,11 +11,13 @@ Vue.component('chat-message', {
     `
 });
 
+
 new Vue({
     el: '#app',
     data: {
         message: '',
         messages: [],
+        users: [],
         user: {
             name: '',
             room: ''
@@ -38,6 +40,9 @@ new Vue({
             })
         },
         initConnection() {
+            socket.on('users:update', users => {
+                this.users = [...users]
+            });
             socket.on('message:new', messages => {
                 this.messages.push(messages);
             });
